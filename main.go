@@ -30,13 +30,13 @@ func main() {
 	http.HandleFunc("/records", mongoServer.ServeMongo)
 	http.HandleFunc("/", StatusCheck)
 
-	httpServer := &http.Server{
-		Addr: ":8080",
-	}
-
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
+	}
+
+	httpServer := &http.Server{
+		Addr: ":" + port,
 	}
 
 	util.Info("Application started at 8080")
