@@ -3,10 +3,10 @@ package database
 import (
 	"context"
 	"fmt"
-	"getir-case/api/config"
 	"getir-case/api/model"
 	"getir-case/api/store"
 	"getir-case/api/util"
+	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -18,15 +18,20 @@ type mongodb struct {
 	collection *mongo.Collection
 }
 
-var cnf config.TOML
-
 const records = "records"
 
-func ConnectMongo(conf config.TOML) store.DataManager {
+func ConnectMongo() store.DataManager {
 	Ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	client, err := mongo.Connect(Ctx, options.Client().ApplyURI("mongodb+srv://challengeUser:WUMglwNBaydH8Yvu@challenge-xzwqd.mongodb.net/getir-case-study?retryWrites=true"))
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+	err := viper.ReadInConfig()
+
+	if err != nil {
+		panic(fmt.Errorf("Fatal error config file: %s \n", err))
+	}
+	client, err := mongo.Connect(Ctx, options.Client().ApplyURI(viper.GetString("MongoServer")))
 	if err != nil {
 		panic(err)
 	}
@@ -34,23 +39,22 @@ func ConnectMongo(conf config.TOML) store.DataManager {
 	if err != nil {
 		panic(err)
 	}
-	database := session.Client().Database(conf.Mongodatabase)
+	database := session.Client().Database(viper.GetString("MongoDatabase"))
 
 	recordsCollection := database.Collection(records)
 	return &mongodb{collection: recordsCollection}
 }
 
-var mongoIns = ConnectMongo(cnf)
+var mongoIns = ConnectMongo()
 
 func MongoManager() store.DataManager { return mongoIns }
 
-
 func (m *mongodb) Retrieve(input interface{}) (out interface{}, err error) {
 	var rData []bson.M
-	var Resp model.MongoResponse
-	var Req model.MongoRequest
+	var Resp model.Response
+	var Req model.Request
 
-	Req, _ = input.(model.MongoRequest)
+	Req, _ = input.(model.Request)
 
 	Resp.Code = http.StatusBadRequest
 	Resp.Records = rData
@@ -125,4 +129,3 @@ func (m *mongodb) Retrieve(input interface{}) (out interface{}, err error) {
 	err = fmt.Errorf(Resp.Msg)
 	return Resp, err
 }
-

@@ -8,17 +8,6 @@ import (
 	"net/http"
 )
 
-func (d *DataStore) InMemory(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case "GET":
-		d.GetInMemory(w, r)
-	case "POST":
-		d.SetInMemory(w, r)
-	default:
-		w.WriteHeader(http.StatusMethodNotAllowed)
-	}
-}
-
 func (d *DataStore) SetInMemory(w http.ResponseWriter, r *http.Request) {
 	var input model.DataInput
 

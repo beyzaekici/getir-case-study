@@ -14,7 +14,7 @@ type MongoDb struct{}
 
 func (m *MongoDb) ServeMongo(rw http.ResponseWriter, request *http.Request) {
 	var result interface{}
-	var mongoResponse model.MongoResponse
+	var mongoResponse model.Response
 	var data []bson.M
 
 	mongoResponse.Code = http.StatusBadRequest
@@ -55,7 +55,7 @@ func (m *MongoDb) ServeMongo(rw http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var content model.MongoRequest
+	var content model.Request
 
 	if err = json.Unmarshal(body, &content); err != nil {
 		rw.WriteHeader(500)

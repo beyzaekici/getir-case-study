@@ -14,14 +14,15 @@ import (
 	"time"
 )
 
-func main(){
+func main() {
 
 	mongoServer := new(search.MongoDb)
 	util.Init()
 	holder := cache.NewCacheProvider()
 	dataHandler := data.New(holder)
 
-	http.HandleFunc("/getAndSet", dataHandler.InMemory)
+	http.HandleFunc("/in-memory/get", dataHandler.GetInMemory)
+	http.HandleFunc("/in-memory/set", dataHandler.SetInMemory)
 	http.HandleFunc("/searchDatabase", mongoServer.ServeMongo)
 
 	httpServer := &http.Server{
@@ -31,8 +32,7 @@ func main(){
 	util.Info("Application started at 8080")
 
 	go func() {
-		if err := httpServer.ListenAndServe();
-		err != http.ErrServerClosed {
+		if err := httpServer.ListenAndServe(); err != http.ErrServerClosed {
 			log.Fatalf("HTTP server ListenAndServe: %v", err)
 		}
 	}()
