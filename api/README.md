@@ -15,13 +15,13 @@ Clone this repo to your local machine using https://github.com/beyzaekici/getir-
 
 ##### _Endpoints_
 
-/in-memory/get 
-/in-memory/set 
-/searchDatabase
+/in-memory 
+/in-memory/ 
+/records
 
 ##### **_Mongo Search_**
 
-**URL** :   /searchDatabase
+**URL** :   /records
 
 **Method** : POST
 
@@ -59,7 +59,7 @@ Clone this repo to your local machine using https://github.com/beyzaekici/getir-
 
 ##### _Set Data to InMemory Cache_
 
-**URL** : /in-memory/set
+**URL** : /in-memory/
 
 **Method** : POST
 
@@ -88,7 +88,7 @@ Clone this repo to your local machine using https://github.com/beyzaekici/getir-
 ##### _Get Data from InMemory Cache_
 
 **Request example**
-**URL** : /in-memory/get?key=example
+**URL** : /in-memory?key=example
 
 **Method** : GET
 

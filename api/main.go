@@ -21,9 +21,9 @@ func main() {
 	holder := cache.NewCacheProvider()
 	dataHandler := data.New(holder)
 
-	http.HandleFunc("/in-memory/get", dataHandler.GetInMemory)
-	http.HandleFunc("/in-memory/set", dataHandler.SetInMemory)
-	http.HandleFunc("/searchDatabase", mongoServer.ServeMongo)
+	http.HandleFunc("/in-memory", dataHandler.GetInMemory)
+	http.HandleFunc("/in-memory/", dataHandler.SetInMemory)
+	http.HandleFunc("/records", mongoServer.ServeMongo)
 
 	httpServer := &http.Server{
 		Addr: ":8080",
