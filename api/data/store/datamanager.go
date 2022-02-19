@@ -10,5 +10,3 @@ type Store interface {
 type DataManager interface {
 	Retrieve(input interface{}) (out interface{}, err error)
 }
-
-
