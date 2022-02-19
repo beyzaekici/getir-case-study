@@ -9,3 +9,98 @@ These endpoints fetch the data in the provided MongoDB collection and return the
 
 go 1.17
 
+##### _Installation_
+
+Clone this repo to your local machine using https://github.com/beyzaekici/getir-case-study
+
+##### _Endpoints_
+
+/in-memory/get 
+/in-memory/set 
+/searchDatabase
+
+##### **_Mongo Search_**
+
+**URL** :   /searchDatabase
+
+**Method** : POST
+
+**Request example**
+
+```json
+{
+"startDate": "2016-01-21",
+"endDate": "2016-03-02",
+"minCount": 2900,
+"maxCount": 3000
+}
+```
+
+**Success Response**
+
+**Code** : 200
+
+**Response example**
+
+```json
+{
+"code": 0,
+"msg": "Success",
+"records":
+        [
+                {
+                    "createdAt": "2016-02-19T08:35:39.409+02:00",
+                    "key": "kkxEdhft",
+                    "totalCount": 2980
+                }
+        ]
+}
+```
+
+##### _Set Data to InMemory Cache_
+
+**URL** : /in-memory/set
+
+**Method** : POST
+
+**Request example**
+
+```json
+{
+"key": "example",
+"value": "example"
+}
+```
+
+**Success Response**
+
+**Code** : 201
+
+**Response example**
+
+```json
+{
+"key": "example",
+"value": "example"
+}
+```
+
+##### _Get Data from InMemory Cache_
+
+**Request example**
+**URL** : /in-memory/get?key=example
+
+**Method** : GET
+
+**Success Response**
+
+**Code** : 200
+
+**Response example**
+
+```json
+{
+"key": "example",
+"value": "example"
+}
+```
