@@ -1,1 +1,1 @@
-web: getircasestudy
+web: bin/getir-case-study

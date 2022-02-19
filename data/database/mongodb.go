@@ -3,10 +3,10 @@ package database
 import (
 	"context"
 	"fmt"
+	"github.com/beyzaekici/getir-case-study/data"
 	"github.com/beyzaekici/getir-case-study/data/store"
 	"github.com/beyzaekici/getir-case-study/model"
 	"github.com/beyzaekici/getir-case-study/util"
-	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -18,20 +18,16 @@ type mongodb struct {
 	collection *mongo.Collection
 }
 
+var config data.Config
+
 const records = "records"
 
 func ConnectMongo() store.DataManager {
 	Ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	viper.SetConfigName("config")
-	viper.AddConfigPath(".")
-	err := viper.ReadInConfig()
-
-	if err != nil {
-		panic(fmt.Errorf("Fatal error config file: %s \n", err))
-	}
-	client, err := mongo.Connect(Ctx, options.Client().ApplyURI(viper.GetString("MongoServer")))
+	config.Read()
+	client, err := mongo.Connect(Ctx, options.Client().ApplyURI(config.MongoServer))
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +35,7 @@ func ConnectMongo() store.DataManager {
 	if err != nil {
 		panic(err)
 	}
-	database := session.Client().Database(viper.GetString("MongoDatabase"))
+	database := session.Client().Database(config.MongoDatabase)
 
 	recordsCollection := database.Collection(records)
 	return &mongodb{collection: recordsCollection}
