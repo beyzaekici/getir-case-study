@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"getir-case/data"
-	"getir-case/data/store/cache"
-	"getir-case/search"
-	"getir-case/util"
+	"github.com/beyzaekici/getir-case-study/data"
+	"github.com/beyzaekici/getir-case-study/data/store/cache"
+	"github.com/beyzaekici/getir-case-study/search"
+	"github.com/beyzaekici/getir-case-study/util"
 	"log"
 	"net/http"
 	"os"

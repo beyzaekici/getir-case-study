@@ -3,9 +3,9 @@ package database
 import (
 	"context"
 	"fmt"
-	"getir-case/data/store"
-	"getir-case/model"
-	"getir-case/util"
+	"github.com/beyzaekici/getir-case-study/data/store"
+	"github.com/beyzaekici/getir-case-study/model"
+	"github.com/beyzaekici/getir-case-study/util"
 	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

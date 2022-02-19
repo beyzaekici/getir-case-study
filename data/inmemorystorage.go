@@ -3,8 +3,8 @@ package data
 import (
 	"encoding/json"
 	"fmt"
-	"getir-case/model"
-	"getir-case/util"
+	"github.com/beyzaekici/getir-case-study/model"
+	"github.com/beyzaekici/getir-case-study/util"
 	"net/http"
 )
 

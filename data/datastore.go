@@ -1,7 +1,7 @@
 package data
 
 import (
-	"getir-case/data/store"
+	"github.com/beyzaekici/getir-case-study/data/store"
 )
 
 type Store struct {

@@ -2,8 +2,8 @@ package test
 
 import (
 	"bytes"
-	"getir-case/data"
-	"getir-case/data/store/cache"
+	"github.com/beyzaekici/getir-case-study/data"
+	"github.com/beyzaekici/getir-case-study/data/store/cache"
 	"net/http"
 	"net/http/httptest"
 	"strings"

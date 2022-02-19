@@ -2,9 +2,9 @@ package search
 
 import (
 	"encoding/json"
-	"getir-case/data/database"
-	"getir-case/model"
-	"getir-case/util"
+	"github.com/beyzaekici/getir-case-study/data/database"
+	"github.com/beyzaekici/getir-case-study/model"
+	"github.com/beyzaekici/getir-case-study/util"
 	"go.mongodb.org/mongo-driver/bson"
 	"io"
 	"io/ioutil"
