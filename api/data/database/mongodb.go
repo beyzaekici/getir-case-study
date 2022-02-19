@@ -59,13 +59,13 @@ func (m *mongodb) Retrieve(input interface{}) (out interface{}, err error) {
 	Resp.Code = http.StatusBadRequest
 	Resp.Records = rData
 
-	start, err := time.Parse("2016-01-02", Req.StartDate)
+	start, err := time.Parse("2006-01-02", Req.StartDate)
 	if err != nil {
 		Resp.Msg = err.Error()
 		return Resp, err
 	}
 
-	end, err := time.Parse("2016-01-02", Req.EndDate)
+	end, err := time.Parse("2006-01-02", Req.EndDate)
 	if err != nil {
 		Resp.Msg = err.Error()
 		return Resp, err
