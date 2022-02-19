@@ -2,8 +2,8 @@ package search
 
 import (
 	"encoding/json"
+	"getir-case/api/data/database"
 	"getir-case/api/model"
-	"getir-case/api/store/database"
 	"getir-case/api/util"
 	"go.mongodb.org/mongo-driver/bson"
 	"io/ioutil"

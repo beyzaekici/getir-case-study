@@ -3,8 +3,8 @@ package database
 import (
 	"context"
 	"fmt"
+	"getir-case/api/data/store"
 	"getir-case/api/model"
-	"getir-case/api/store"
 	"getir-case/api/util"
 	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"

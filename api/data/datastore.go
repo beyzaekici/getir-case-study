@@ -1,15 +1,15 @@
 package data
 
 import (
-	"getir-case/api/store"
+	"getir-case/api/data/store"
 )
 
-type DataStore struct {
+type Store struct {
 	store.Store
 }
 
-func New(holder store.Store) *DataStore {
-	return &DataStore{
+func New(holder store.Store) *Store {
+	return &Store{
 		holder,
 	}
 }

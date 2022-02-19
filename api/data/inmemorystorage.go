@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func (d *DataStore) SetInMemory(w http.ResponseWriter, r *http.Request) {
+func (d *Store) SetInMemory(w http.ResponseWriter, r *http.Request) {
 	var input model.DataInput
 
 	err := json.NewDecoder(r.Body).Decode(&input)
@@ -27,9 +27,10 @@ func (d *DataStore) SetInMemory(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (d *DataStore) GetInMemory(w http.ResponseWriter, r *http.Request) {
-	HeaderKey := r.Header.Get("key")
-	value, err := d.GetKey(HeaderKey)
+func (d *Store) GetInMemory(w http.ResponseWriter, r *http.Request) {
+	key := r.URL.Query()
+	queryParam := key.Get("key")
+	value, err := d.GetKey(queryParam)
 	if err != nil {
 		_, err := fmt.Fprintf(w, "%+v", err.Error())
 		if err != nil {
@@ -37,7 +38,7 @@ func (d *DataStore) GetInMemory(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	} else {
-		out := model.DataInput{Key: HeaderKey, Value: value}
+		out := model.DataInput{Key: queryParam, Value: value}
 		err = json.NewEncoder(w).Encode(out)
 		if err != nil {
 			util.Error(err)

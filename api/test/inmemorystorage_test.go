@@ -3,7 +3,7 @@ package test
 import (
 	"bytes"
 	"getir-case/api/data"
-	"getir-case/api/store/cache"
+	"getir-case/api/data/store/cache"
 	"net/http"
 	"net/http/httptest"
 	"strings"

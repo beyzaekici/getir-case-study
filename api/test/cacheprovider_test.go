@@ -1,7 +1,7 @@
 package test
 
 import (
-	"getir-case/api/store/cache"
+	"getir-case/api/data/store/cache"
 	"testing"
 )
 
