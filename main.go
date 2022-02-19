@@ -14,6 +14,10 @@ import (
 	"time"
 )
 
+func StatusCheck(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("OK!"))
+}
+
 func main() {
 
 	mongoServer := new(search.MongoDb)
@@ -24,6 +28,7 @@ func main() {
 	http.HandleFunc("/in-memory", dataHandler.GetInMemory)
 	http.HandleFunc("/in-memory/", dataHandler.SetInMemory)
 	http.HandleFunc("/records", mongoServer.ServeMongo)
+	http.HandleFunc("/", StatusCheck)
 
 	httpServer := &http.Server{
 		Addr: ":8080",
