@@ -29,6 +29,11 @@ func main() {
 		Addr: ":8080",
 	}
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	util.Info("Application started at 8080")
 
 	go func() {
