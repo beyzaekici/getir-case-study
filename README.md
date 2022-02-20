@@ -15,9 +15,10 @@ Clone this repo to your local machine using https://github.com/beyzaekici/getir-
 
 ##### _Endpoints_
 
-/in-memory 
-/in-memory/ 
-/records
+https://getircase-study.herokuapp.com/in-memory
+https://getircase-study.herokuapp.com/in-memory/
+https://getircase-study.herokuapp.com/records
+https://getircase-study.herokuapp.com/ ---> healthcheck
 
 ##### **_Mongo Search_**
 
