@@ -27,7 +27,7 @@ func main() {
 
 	http.HandleFunc("/in-memory", dataHandler.GetInMemory)
 	http.HandleFunc("/in-memory/", dataHandler.SetInMemory)
-	http.HandleFunc("/records", mongoServer.ServeMongo)
+	http.HandleFunc("/records", mongoServer.SearchInMongo)
 	http.HandleFunc("/", StatusCheck)
 
 	port := os.Getenv("PORT")
